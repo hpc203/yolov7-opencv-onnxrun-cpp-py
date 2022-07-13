@@ -8,4 +8,5 @@ YOLOV7的图片预处理是BGR2RGB+不保持高宽比的resize+除以255
 链接: https://pan.baidu.com/s/1FoC0n7qMz4Fz0RtDGpI6xQ  密码: 7mhs
 下载完成后把models目录放在主程序文件的目录内，编译运行
 
-YOLOV7的训练源码是https://github.com/WongKinYiu/yolov7，跟YOLOR是同一个作者的。
+YOLOV7的训练源码是 https://github.com/WongKinYiu/yolov7
+跟YOLOR是同一个作者的。
