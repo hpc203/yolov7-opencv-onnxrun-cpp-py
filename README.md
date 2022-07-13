@@ -1,5 +1,6 @@
 # yolov7-opencv-onnxrun-cpp-py
-分别使用OpenCV、ONNXRuntime部署YOLOV7目标检测，一共包含12个onnx模型，依然是包含C++和Python两个版本的程序
+分别使用OpenCV、ONNXRuntime部署YOLOV7目标检测，一共包含12个onnx模型，依然是包含C++和Python两个版本的程序。
+
 编写这套YOLOV7的程序，跟此前编写的YOLOV6的程序，大部分源码是相同的，区别仅仅在于图片预处理的过程不一样。
 YOLOV7的图片预处理是BGR2RGB+直接resize+除以255
 
