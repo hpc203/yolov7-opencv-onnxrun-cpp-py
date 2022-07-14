@@ -8,5 +8,9 @@ YOLOV7的图片预处理是BGR2RGB+不保持高宽比的resize+除以255
 链接: https://pan.baidu.com/s/1FoC0n7qMz4Fz0RtDGpI6xQ  密码: 7mhs
 下载完成后把models目录放在主程序文件的目录内，编译运行
 
+使用opencv部署的程序，有一个待优化的问题。onnxruntime读取.onnx文件可以获得输入张量的形状信息，
+但是opencv的dnn模块读取.onnx文件无法获得输入张量的形状信息，目前是根据.onnx文件的名称来解析字符串获得输入张量的高度和宽度的。
+
+
 YOLOV7的训练源码是 https://github.com/WongKinYiu/yolov7
 跟YOLOR是同一个作者的。
