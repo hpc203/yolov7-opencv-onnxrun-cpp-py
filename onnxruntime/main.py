@@ -147,8 +147,9 @@ class YOLOv7:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--imgpath', type=str, default='images/person.jpg', help="image path")
-    parser.add_argument('--modelpath', type=str, default='models/yolov7_736x1280.onnx',
-                        choices=["models/yolov7_736x1280.onnx", "models/yolov7-tiny_384x640.onnx",
+    parser.add_argument('--modelpath', type=str, default='models/yolov7_640x640.onnx',
+                        choices=["models/yolov7_640x640.onnx", "models/yolov7-tiny_640x640.onnx",
+                                 "models/yolov7_736x1280.onnx", "models/yolov7-tiny_384x640.onnx",
                                  "models/yolov7_480x640.onnx", "models/yolov7_384x640.onnx",
                                  "models/yolov7-tiny_256x480.onnx", "models/yolov7-tiny_256x320.onnx",
                                  "models/yolov7_256x320.onnx", "models/yolov7-tiny_256x640.onnx",
