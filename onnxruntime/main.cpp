@@ -163,14 +163,14 @@ void YOLOV7::detect(Mat& frame)
 	auto allocator_info = MemoryInfo::CreateCpu(OrtDeviceAllocator, OrtMemTypeCPU);
 	Value input_tensor_ = Value::CreateTensor<float>(allocator_info, input_image_.data(), input_image_.size(), input_shape_.data(), input_shape_.size());
 
-	// ø™ ºÕ∆¿Ì
-	vector<Value> ort_outputs = ort_session->Run(RunOptions{ nullptr }, &input_names[0], &input_tensor_, 1, output_names.data(), output_names.size());   // ø™ ºÕ∆¿Ì
+	// ÂºÄÂßãÊé®ÁêÜ
+	vector<Value> ort_outputs = ort_session->Run(RunOptions{ nullptr }, &input_names[0], &input_tensor_, 1, output_names.data(), output_names.size());   // ÂºÄÂßãÊé®ÁêÜ
 	/////generate proposals
 	vector<BoxInfo> generate_boxes;
 	float ratioh = (float)frame.rows / this->inpHeight, ratiow = (float)frame.cols / this->inpWidth;
 	int n = 0, k = 0; ///cx,cy,w,h,box_score, class_score
 	const float* pdata = ort_outputs[0].GetTensorMutableData<float>();
-	for (n = 0; n < this->num_proposal; n++)   ///Ãÿ’˜Õº≥ﬂ∂»
+	for (n = 0; n < this->num_proposal; n++)   ///ÁâπÂæÅÂõæÂ∞∫Â∫¶
 	{
 		float box_score = pdata[4];
 		if (box_score > this->confThreshold)
@@ -220,7 +220,7 @@ void YOLOV7::detect(Mat& frame)
 
 int main()
 {
-	Net_config YOLOV7_nets = { 0.3, 0.5, "models/yolov7_736x1280.onnx" };   ////choices=["models/yolov7_736x1280.onnx", "models/yolov7-tiny_384x640.onnx", "models/yolov7_480x640.onnx", "models/yolov7_384x640.onnx", "models/yolov7-tiny_256x480.onnx", "models/yolov7-tiny_256x320.onnx", "models/yolov7_256x320.onnx", "models/yolov7-tiny_256x640.onnx", "models/yolov7_256x640.onnx", "models/yolov7-tiny_480x640.onnx", "models/yolov7-tiny_736x1280.onnx", "models/yolov7_256x480.onnx"]
+	Net_config YOLOV7_nets = { 0.3, 0.5, "models/yolov7_640x640.onnx" };   ////choices=["models/yolov7_640x640.onnx", "models/yolov7-tiny_640x640.onnx", "models/yolov7_736x1280.onnx", "models/yolov7-tiny_384x640.onnx", "models/yolov7_480x640.onnx", "models/yolov7_384x640.onnx", "models/yolov7-tiny_256x480.onnx", "models/yolov7-tiny_256x320.onnx", "models/yolov7_256x320.onnx", "models/yolov7-tiny_256x640.onnx", "models/yolov7_256x640.onnx", "models/yolov7-tiny_480x640.onnx", "models/yolov7-tiny_736x1280.onnx", "models/yolov7_256x480.onnx"]
 	YOLOV7 net(YOLOV7_nets);
 	string imgpath = "images/dog.jpg";
 	Mat srcimg = imread(imgpath);
