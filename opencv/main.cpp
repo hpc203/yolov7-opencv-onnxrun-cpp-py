@@ -94,7 +94,7 @@ void YOLOV7::detect(Mat& frame)
 	float ratioh = (float)frame.rows / this->inpHeight, ratiow = (float)frame.cols / this->inpWidth;
 	int n = 0, row_ind = 0; ///cx,cy,w,h,box_score,class_score
 	float* pdata = (float*)outs[0].data;
-	for (n = 0; n < num_proposal; n++)   ///����ͼ�߶�
+	for (n = 0; n < num_proposal; n++)   ///ÌØÕ÷Í¼³ß¶È
 	{
 		float box_score = pdata[4];
 		if (box_score > this->confThreshold)
@@ -140,7 +140,7 @@ void YOLOV7::detect(Mat& frame)
 
 int main()
 {
-	Net_config YOLOV7_nets = { 0.3, 0.5, "models/yolov7_736x1280.onnx" };   ////choices=["models/yolov7_736x1280.onnx", "models/yolov7-tiny_384x640.onnx", "models/yolov7_480x640.onnx", "models/yolov7_384x640.onnx", "models/yolov7-tiny_256x480.onnx", "models/yolov7-tiny_256x320.onnx", "models/yolov7_256x320.onnx", "models/yolov7-tiny_256x640.onnx", "models/yolov7_256x640.onnx", "models/yolov7-tiny_480x640.onnx", "models/yolov7-tiny_736x1280.onnx", "models/yolov7_256x480.onnx"]
+	Net_config YOLOV7_nets = { 0.3, 0.5, "models/yolov7_640x640.onnx" };   ////choices=["models/yolov7_640x640.onnx", "models/yolov7-tiny_640x640.onnx", "models/yolov7_736x1280.onnx", "models/yolov7-tiny_384x640.onnx", "models/yolov7_480x640.onnx", "models/yolov7_384x640.onnx", "models/yolov7-tiny_256x480.onnx", "models/yolov7-tiny_256x320.onnx", "models/yolov7_256x320.onnx", "models/yolov7-tiny_256x640.onnx", "models/yolov7_256x640.onnx", "models/yolov7-tiny_480x640.onnx", "models/yolov7-tiny_736x1280.onnx", "models/yolov7_256x480.onnx"]
 	YOLOV7 net(YOLOV7_nets);
 	string imgpath = "images/dog.jpg";
 	Mat srcimg = imread(imgpath);
