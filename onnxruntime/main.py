@@ -112,13 +112,10 @@ class YOLOv7:
         # Scale boxes to original image dimensions
         boxes = self.rescale_boxes(boxes)
         
-        # Convert boxes to xyxy format
+        # Convert boxes to xywh format
         boxes_ = np.copy(boxes)
         boxes_[..., 0] = boxes[..., 0] - boxes[..., 2] * 0.5
-        boxes_[..., 1] = boxes[..., 1] - boxes[..., 3] * 0.5
-        boxes_[..., 2] = boxes[..., 0] + boxes[..., 2] * 0.5
-        boxes_[..., 3] = boxes[..., 1] + boxes[..., 3] * 0.5
-        
+        boxes_[..., 1] = boxes[..., 1] - boxes[..., 3] * 0.5 
         return boxes_
     
     def rescale_boxes(self, boxes):
@@ -131,16 +128,16 @@ class YOLOv7:
     
     def draw_detections(self, image, boxes, scores, class_ids):
         for box, score, class_id in zip(boxes, scores, class_ids):
-            x1, y1, x2, y2 = box.astype(int)
+            x, y, w, h = box.astype(int)
             
             # Draw rectangle
-            cv2.rectangle(image, (x1, y1), (x2, y2), (0, 0, 255), thickness=2)
+            cv2.rectangle(image, (x, y), (x+w, y+h), (0, 0, 255), thickness=2)
             label = self.class_names[class_id]
             label = f'{label} {int(score * 100)}%'
             labelSize, baseLine = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 1)
             # top = max(y1, labelSize[1])
             # cv.rectangle(frame, (left, top - round(1.5 * labelSize[1])), (left + round(1.5 * labelSize[0]), top + baseLine), (255,255,255), cv.FILLED)
-            cv2.putText(image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), thickness=2)
+            cv2.putText(image, label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), thickness=2)
         return image
 
 
